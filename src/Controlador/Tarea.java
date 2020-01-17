@@ -1,11 +1,9 @@
-package sample;
+package Servidor;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;

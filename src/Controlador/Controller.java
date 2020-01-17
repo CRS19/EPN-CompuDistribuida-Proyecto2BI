@@ -1,4 +1,4 @@
-package sample;
+package Servidor;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -21,6 +21,7 @@ public class Controller {
         procesoHab2 = new Procesos();
         grapHab1.getData().add(procesoHab1.task.getSeries());
         grapHab2.getData().add(procesoHab2.task.getSeries());
+        grapHab1.setAnimated(false);
     }
 
     public void start(javafx.event.ActionEvent actionEvent) {

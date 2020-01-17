@@ -1,4 +1,4 @@
-package sample;
+package Servidor;
 
 public class Procesos {
 
