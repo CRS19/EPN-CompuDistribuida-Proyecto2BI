@@ -2,12 +2,11 @@ package Controlador;
 
 public class Procesos {
 
+    public Tarea task = new Tarea();
 
     public Tarea getTask() {
         return task;
     }
-
-    public Tarea task = new Tarea();
 
     public void start() {
         task.start();
