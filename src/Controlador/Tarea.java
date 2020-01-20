@@ -1,4 +1,4 @@
-package Servidor;
+package Controlador;
 
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;

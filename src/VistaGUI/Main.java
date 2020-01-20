@@ -1,4 +1,4 @@
-package Servidor;
+package VistaGUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

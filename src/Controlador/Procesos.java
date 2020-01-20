@@ -1,4 +1,4 @@
-package Servidor;
+package Controlador;
 
 public class Procesos {
 
