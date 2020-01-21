@@ -1,5 +1,7 @@
 package Controlador;
 
+import Servidor.ServerImplements;
+import Servidor.datosTemp;
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -21,7 +23,8 @@ public class Tarea extends Thread {
     public XYChart.Series<String, Number> series = new XYChart.Series<>();
     private SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
 
-
+    public int dato;
+    ServerImplements aux;
 
 
     @Override
@@ -44,7 +47,11 @@ public class Tarea extends Thread {
 
                 Date now = new Date();
 
-                this.series.getData().add(new XYChart.Data<>(formateador.format(now),random));
+                recibirDatos(aux.TemperaturaActual);
+
+                this.series.getData().add(new XYChart.Data<>(formateador.format(now),dato));
+
+
 
                 if (series.getData().size() > WINDOW_SIZE) {
                     series.getData().remove(0);
@@ -56,6 +63,14 @@ public class Tarea extends Thread {
 
     public void  kill(){
         isActive = false;
+    }
+
+    public void recibirDatos(int datos){
+        this.dato=datos;
+    }
+
+    public void copiarServerIm(ServerImplements a){
+        this.aux = a;
     }
 
 }

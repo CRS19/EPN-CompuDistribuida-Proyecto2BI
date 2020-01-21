@@ -3,6 +3,7 @@ package Servidor;
 import rmiinterface.RemoteInterface;
 import rmiinterface.interfaceSensor;
 
+import java.io.FileWriter;
 import java.rmi.server.UnicastRemoteObject;
 import javax.swing.JOptionPane;
 
@@ -10,8 +11,10 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
 
     String condi="0";
     public int intervaloSeñal=0;
-    public int TemperaturaActual=0;
+    public int TemperaturaActual=0; //Aqui se guarda la temperatura
     public boolean clienteConectado = false;
+    datosTemp datos;
+    FileWriter salidaTemp = new FileWriter("temphab1.txt");
 
     public ServerImplements() throws Exception{
         super();
@@ -42,6 +45,8 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     public void comenzarMonitoreo(interfaceSensor sensor) throws Exception {
             this.intervaloSeñal = sensor.getIntervaloSeñal();
             this.TemperaturaActual=sensor.medirTemperatura();
+//            datos.setTemperaturaActual(this.TemperaturaActual);
+            System.out.println(this.getTemperaturaActual());
 
     }
 
@@ -53,6 +58,10 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     public void condic(){
         String condi =  JOptionPane.showInputDialog("Apagar aire acondicionado");
         this.condi = condi;
+    }
+
+    public datosTemp enviarDatos(){
+        return datos;
     }
 
     //GETTERS Y SETTERS

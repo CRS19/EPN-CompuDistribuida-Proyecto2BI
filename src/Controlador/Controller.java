@@ -21,30 +21,31 @@ public class Controller {
     private LineChart<String, Number> grapHab2;
 
     Procesos procesoHab1;
-    Procesos procesoHab2;
+  //  Procesos procesoHab2;
 
     @FXML
     public void initialize() {
-       // Server serverHab1 = new Server();
+        Server serverHab1 = new Server();
        // Server serverHab2 = new Server();
         procesoHab1 = new Procesos();
+        procesoHab1.task.copiarServerIm(serverHab1.a);
         txtConsolaHab2.setText("Esperando cliente...");
         txtConsolaHab1.setText("Esperando cliente...");
-        procesoHab2 = new Procesos();
+  //      procesoHab2 = new Procesos();
         grapHab1.getData().add(procesoHab1.task.getSeries());
-        grapHab2.getData().add(procesoHab2.task.getSeries());
+   //     grapHab2.getData().add(procesoHab2.task.getSeries());
         grapHab1.setAnimated(false);
     }
 
     @FXML
     public void start(javafx.event.ActionEvent actionEvent) {
         procesoHab1.start();
-        procesoHab2.start();
+  //      procesoHab2.start();
     }
 
     @FXML
     public void stop(javafx.event.ActionEvent actionEvent) {
         procesoHab1.stop();
-        procesoHab2.stop();
+  //      procesoHab2.stop();
     }
 }

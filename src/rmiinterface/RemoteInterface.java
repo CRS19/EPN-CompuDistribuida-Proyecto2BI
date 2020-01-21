@@ -13,6 +13,8 @@ public interface RemoteInterface extends Remote {
     public boolean para() throws Exception;
     public void comenzarMonitoreo(interfaceSensor sensor) throws Exception;
     void clienteConectado(boolean conexion) throws Exception;
+
+
     //public setTiempoTemp() throws Exception;
 
 }

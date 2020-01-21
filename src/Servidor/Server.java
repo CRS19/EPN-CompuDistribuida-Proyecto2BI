@@ -19,14 +19,6 @@ public class Server {
 
              //a.condic();
 
-            esperarConexion();
-
-            //ArrayList<interfaceSensor> sensoresTemp = new ArrayList<>();
-            //Objetniendo el objeto sensor temperatura del cliente
-           /* System.out.println("Intentar objener el dato");
-            interfaceSensor senTemp = (interfaceSensor) miRegistry.lookup("sensor");
-            System.out.println("Debe imprimir algo: "+senTemp.medirTemperatura());*/
-
            System.out.println(a.isClienteConectado());
 
         }catch(Exception e){
@@ -34,10 +26,5 @@ public class Server {
         }
     }
 
-    void esperarConexion(){
-        while(!a.isClienteConectado()){
-            System.out.println(a.isClienteConectado());
-        }
-    }
 
 }

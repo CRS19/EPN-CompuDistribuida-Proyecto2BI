@@ -10,7 +10,7 @@ public class Cliente {
 
     public interfaceSensor sensor;
 
-    public Cliente(){
+    public Cliente() {
 
         try{
 
@@ -20,19 +20,22 @@ public class Cliente {
 
 
             //sensor temp a enviar al servidor
-       /*     SensorTemperatura sensorTemp = new SensorTemperatura(2);
-            miRegistro.rebind("sensor",sensorTemp);*/
+       /*    SensorTemperatura sensorTemp = new SensorTemperatura(2);
+             miRegistro.rebind("sensor",sensorTemp);*/
 
 
 
 /*            do {
                 System.out.println(s.estadoTemp());
             }while(s.para());*/
-            s.clienteConectado(true);
+           // s.clienteConectado(true);
 
             sensor = (interfaceSensor) new SensorTemperatura(2);
-            s.comenzarMonitoreo(sensor);
+            do {
+                s.comenzarMonitoreo(sensor);
+            }while (s.para());
 
+            System.out.println("Ya no hace nada mas");
 
         }catch (Exception e){
             System.out.println(e.getMessage());
