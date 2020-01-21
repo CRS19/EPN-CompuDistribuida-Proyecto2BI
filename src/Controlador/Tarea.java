@@ -24,39 +24,38 @@ public class Tarea extends Thread {
 
 
 
-        @Override
-        public void run() {
+    @Override
+    public void run() {
 
-            while (isActive) {
+        while (isActive) {
 
-                System.out.println("Hilo "+this.getName()+": Estoy ejecutando :'v");
+            System.out.println("Hilo "+this.getName()+": Estoy ejecutando :'v");
 
-                try {
-                    // Simulate heavy processing stuff
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Integer random = ThreadLocalRandom.current().nextInt(10);
-
-                Platform.runLater(()->{
-
-                    Date now = new Date();
-
-                    this.series.getData().add(new XYChart.Data<>(formateador.format(now),random));
-
-                    if (series.getData().size() > WINDOW_SIZE) {
-                        series.getData().remove(0);
-                    }
-                });
-
+            try {
+                // Simulate heavy processing stuff
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }
 
-        public void  kill(){
-            isActive = false;
+            Integer random = ThreadLocalRandom.current().nextInt(10);
+
+            Platform.runLater(()->{
+
+                Date now = new Date();
+
+                this.series.getData().add(new XYChart.Data<>(formateador.format(now),random));
+
+                if (series.getData().size() > WINDOW_SIZE) {
+                    series.getData().remove(0);
+                }
+            });
+
         }
+    }
+
+    public void  kill(){
+        isActive = false;
+    }
 
 }
-

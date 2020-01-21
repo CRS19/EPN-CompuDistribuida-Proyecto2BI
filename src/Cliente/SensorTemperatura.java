@@ -3,11 +3,19 @@ package Cliente;
 import rmiinterface.interfaceSensor;
 import java.rmi.server.UnicastRemoteObject;
 
-public class SensorTemperatura extends UnicastRemoteObject implements interfaceSensor {
+public class SensorTemperatura implements interfaceSensor {
 
-        int intervaloSeñal;
+        public int intervaloSeñal;
 
-        SensorTemperatura(int intervalo)throws  Exception{
+    public int getIntervaloSeñal() {
+        return intervaloSeñal;
+    }
+
+    public void setIntervaloSeñal(int intervaloSeñal) {
+        this.intervaloSeñal = intervaloSeñal;
+    }
+
+    SensorTemperatura(int intervalo)throws  Exception{
             super();
             this.intervaloSeñal=intervalo;
         }
@@ -20,5 +28,6 @@ public class SensorTemperatura extends UnicastRemoteObject implements interfaceS
 
             medida = (int) Math.floor(Math.random()*(n-m+1)+m);
             return medida;
+          //  Thread.sleep(intervaloSeñal);
         }
 }

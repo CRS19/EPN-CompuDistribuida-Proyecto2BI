@@ -1,5 +1,6 @@
 package Controlador;
 
+import Servidor.Server;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.TextArea;
@@ -24,6 +25,8 @@ public class Controller {
 
     @FXML
     public void initialize() {
+       // Server serverHab1 = new Server();
+       // Server serverHab2 = new Server();
         procesoHab1 = new Procesos();
         txtConsolaHab2.setText("Esperando cliente...");
         txtConsolaHab1.setText("Esperando cliente...");
