@@ -1,6 +1,7 @@
 package Cliente;
 
 import rmiinterface.RemoteInterface;
+import rmiinterface.interfaceHumo;
 import rmiinterface.interfaceSensor;
 
 import java.rmi.registry.LocateRegistry;
@@ -9,6 +10,7 @@ import java.rmi.registry.Registry;
 public class Cliente {
 
     public interfaceSensor sensor;
+    public interfaceHumo sensorHumo;
 
     public Cliente() {
 
@@ -24,24 +26,35 @@ public class Cliente {
              miRegistro.rebind("sensor",sensorTemp);*/
 
 
-
-/*            do {
-                System.out.println(s.estadoTemp());
-            }while(s.para());*/
-           // s.clienteConectado(true);
-
             sensor = (interfaceSensor) new SensorTemperatura(2);
+            sensorHumo = (interfaceHumo) new SensorHumo(5);
             do {
                 sensor.setIntervaloSeñal(s.getIntervaloSeñal());
                 s.comenzarMonitoreo(sensor);
+                s.comerzarMonitoreoHumo(sensorHumo);
                 sensor.setIntervaloSeñal(s.getIntervaloSeñal());
-            }while (s.para());
+            }while (estaCliente());
+
+            s.finalizarMonitoreo();
 
             System.out.println("Ya no hace nada mas");
 
         }catch (Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private boolean estaCliente(){
+        int x;
+        int n = 5;
+        int m = 0;
+
+        x = (int) Math.floor(Math.random()*(n-m+1)+m);
+        if(x==3){
+            return false;
+        }   else {
+            return true;
         }
     }
 }

@@ -1,6 +1,7 @@
 package Servidor;
 
 import rmiinterface.RemoteInterface;
+import rmiinterface.interfaceHumo;
 import rmiinterface.interfaceSensor;
 
 import java.io.FileWriter;
@@ -12,8 +13,13 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     String condi="0";
     public int intervaloSeñal=2;
     public int TemperaturaActual=0; //Aqui se guarda la temperatura
+    public int estadoHumo=1; // Aqui se guarda el estado del sensor de humo
     public boolean clienteConectado = false;
+    public boolean clienteActivo = false;
+    public boolean esperandoCliente = true;
     public interfaceSensor sensorTemp;
+    public interfaceHumo sensorHumo;
+
 
     FileWriter salidaTemp = new FileWriter("temphab1.txt");
 
@@ -45,10 +51,19 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     @Override
     public void comenzarMonitoreo(interfaceSensor sensor) throws Exception {
             this.sensorTemp=sensor;
+            this.clienteActivo = true;
+            this.esperandoCliente = false;
             this.intervaloSeñal = sensorTemp.getIntervaloSeñal();
             this.TemperaturaActual=sensorTemp.medirTemperatura();
             System.out.println(this.getTemperaturaActual());
 
+    }
+
+
+    public void comerzarMonitoreoHumo(interfaceHumo sensorHumo) throws Exception{
+        this.sensorHumo = sensorHumo;
+        this.estadoHumo = this.sensorHumo.obtenerEstado();
+        System.out.println(this.getEstadoHumo());
     }
 
     @Override
@@ -59,6 +74,11 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     public void condic(){
         String condi =  JOptionPane.showInputDialog("Apagar aire acondicionado");
         this.condi = condi;
+    }
+
+    public void finalizarMonitoreo(){
+        this.clienteActivo = false;
+        this.setTemperaturaActual(0);
     }
 
     //GETTERS Y SETTERS
@@ -94,5 +114,14 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     public void setClienteConectado(boolean clienteConectado) {
         this.clienteConectado = clienteConectado;
     }
+
+    public int getEstadoHumo() {
+        return estadoHumo;
+    }
+
+    public void setEstadoHumo(int estadoHumo) {
+        this.estadoHumo = estadoHumo;
+    }
+
 
 }
