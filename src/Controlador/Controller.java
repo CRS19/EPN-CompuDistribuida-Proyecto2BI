@@ -66,6 +66,7 @@ public class Controller {
     public void stop(javafx.event.ActionEvent actionEvent) {
         procesoHab1.stop();
         procesoHab2.stop();
+        System.exit(0);
     }
 
     public void cambiarTextArea2(String msg){
