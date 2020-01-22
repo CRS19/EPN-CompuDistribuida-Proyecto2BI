@@ -14,7 +14,7 @@ public class Cliente {
 
         try{
 
-            // Registry miRegistro = LocateRegistry.getRegistry("172.29.64.213",1234);
+            //Registry miRegistro = LocateRegistry.getRegistry("172.29.65.64",1234);
             Registry miRegistro = LocateRegistry.getRegistry("127.0.0.1",1234);
             RemoteInterface s = (RemoteInterface) miRegistro.lookup("Prueba");
 
@@ -32,7 +32,9 @@ public class Cliente {
 
             sensor = (interfaceSensor) new SensorTemperatura(2);
             do {
+                sensor.setIntervaloSeñal(s.getIntervaloSeñal());
                 s.comenzarMonitoreo(sensor);
+                sensor.setIntervaloSeñal(s.getIntervaloSeñal());
             }while (s.para());
 
             System.out.println("Ya no hace nada mas");

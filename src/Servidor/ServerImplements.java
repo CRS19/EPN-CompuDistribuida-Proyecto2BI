@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
 public class ServerImplements extends UnicastRemoteObject implements RemoteInterface {
 
     String condi="0";
-    public int intervaloSeñal=0;
+    public int intervaloSeñal=2;
     public int TemperaturaActual=0; //Aqui se guarda la temperatura
     public boolean clienteConectado = false;
-    datosTemp datos;
+    public interfaceSensor sensorTemp;
+
     FileWriter salidaTemp = new FileWriter("temphab1.txt");
 
     public ServerImplements() throws Exception{
@@ -43,9 +44,9 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
 
     @Override
     public void comenzarMonitoreo(interfaceSensor sensor) throws Exception {
-            this.intervaloSeñal = sensor.getIntervaloSeñal();
-            this.TemperaturaActual=sensor.medirTemperatura();
-//            datos.setTemperaturaActual(this.TemperaturaActual);
+            this.sensorTemp=sensor;
+            this.intervaloSeñal = sensorTemp.getIntervaloSeñal();
+            this.TemperaturaActual=sensorTemp.medirTemperatura();
             System.out.println(this.getTemperaturaActual());
 
     }
@@ -58,10 +59,6 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
     public void condic(){
         String condi =  JOptionPane.showInputDialog("Apagar aire acondicionado");
         this.condi = condi;
-    }
-
-    public datosTemp enviarDatos(){
-        return datos;
     }
 
     //GETTERS Y SETTERS
@@ -77,7 +74,8 @@ public class ServerImplements extends UnicastRemoteObject implements RemoteInter
         return intervaloSeñal;
     }
 
-    public void setIntervaloSeñal(int intervaloSeñal) {
+    public void setIntervaloSeñal(int intervaloSeñal) throws Exception {
+
         this.intervaloSeñal = intervaloSeñal;
     }
 

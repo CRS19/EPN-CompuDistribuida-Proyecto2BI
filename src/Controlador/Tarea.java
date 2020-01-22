@@ -2,10 +2,13 @@ package Controlador;
 
 import Servidor.ServerImplements;
 import Servidor.datosTemp;
+import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.TextArea;
 
+import javax.sound.midi.SysexMessage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,9 +26,12 @@ public class Tarea extends Thread {
     public XYChart.Series<String, Number> series = new XYChart.Series<>();
     private SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
 
+    @FXML
+    private TextArea txtConsolaHab1;
+
     public int dato;
     ServerImplements aux;
-
+    Controller GUI;
 
     @Override
     public void run() {
@@ -36,7 +42,7 @@ public class Tarea extends Thread {
 
             try {
                 // Simulate heavy processing stuff
-                Thread.sleep(2000);
+                Thread.sleep(aux.intervaloSeñal*1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -56,6 +62,14 @@ public class Tarea extends Thread {
                 if (series.getData().size() > WINDOW_SIZE) {
                     series.getData().remove(0);
                 }
+
+                if(dato!=0){
+                    GUI.cambiarTextArea2("Arieacondicionado: ON");
+                    GUI.cambiarTextArea1("El cliente esta en la habitacion.");
+                    System.out.println("se cambio el texto");
+                }
+
+
             });
 
         }
@@ -73,4 +87,12 @@ public class Tarea extends Thread {
         this.aux = a;
     }
 
+    public void copiarGUI(Controller gui){
+        this.GUI = gui;
+    }
+
+    public void cambiarFrecuenciaTemp(int frecuenciaTemp) throws Exception {
+        this.aux.setIntervaloSeñal(frecuenciaTemp);
+        System.out.println("El intervalo deberia ser:"+aux.intervaloSeñal);
+    }
 }

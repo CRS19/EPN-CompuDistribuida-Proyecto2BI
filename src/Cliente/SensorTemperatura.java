@@ -31,7 +31,6 @@ public class SensorTemperatura extends Thread implements interfaceSensor {
             medida = (int) Math.floor(Math.random()*(n-m+1)+m);
             this.temperaturaActual = medida;
             return medida;
-          //  Thread.sleep(intervaloSeñal);
         }
 
 

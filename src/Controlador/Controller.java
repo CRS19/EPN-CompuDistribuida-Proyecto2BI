@@ -4,6 +4,7 @@ import Servidor.Server;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class Controller {
 
@@ -20,15 +21,19 @@ public class Controller {
     @FXML
     private LineChart<String, Number> grapHab2;
 
+    @FXML
+    private TextField txtCambioFrecuenciaTemp;
+
     Procesos procesoHab1;
   //  Procesos procesoHab2;
 
     @FXML
     public void initialize() {
         Server serverHab1 = new Server();
-       // Server serverHab2 = new Server();
         procesoHab1 = new Procesos();
+        //Construir la tarea
         procesoHab1.task.copiarServerIm(serverHab1.a);
+        procesoHab1.task.copiarGUI(this);
         txtConsolaHab2.setText("Esperando cliente...");
         txtConsolaHab1.setText("Esperando cliente...");
   //      procesoHab2 = new Procesos();
@@ -48,4 +53,20 @@ public class Controller {
         procesoHab1.stop();
   //      procesoHab2.stop();
     }
+
+    public void cambiarTextArea2(String msg){
+        this.txtConsolaHab2.setText(msg);
+    }
+    public void cambiarTextArea1(String msg){
+        this.txtConsolaHab1.setText(msg);
+    }
+
+    @FXML
+    public void cambiarFrecuenciaTemp(javafx.event.ActionEvent actionEvent) throws Exception {
+
+        procesoHab1.task.cambiarFrecuenciaTemp(
+                Integer.parseInt(this.txtCambioFrecuenciaTemp.getText()
+                ));
+    }
+
 }
