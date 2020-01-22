@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Tarea extends Thread {
 
     private final int  WINDOW_SIZE = 10;
+    public int id;
     private boolean isActive = true;
     private LineChart<String, Number> chart;
 
@@ -39,9 +40,9 @@ public class Tarea extends Thread {
 
         while (isActive) {
 
-            System.out.println(this.getName());
+            System.out.println(this.getName()+"  "+id);
 
-            if("Thread-2".equals(this.getName())){
+            if(this.id == 1){
 
                 try {
                     // Simulate heavy processing stuff
@@ -88,7 +89,7 @@ public class Tarea extends Thread {
                 });
             }
 
-            if ("Thread-3".equals(this.getName())){
+            if (this.id == 2){
                 System.out.println(this.getName()+": Sho me encargo del humo :'v");
 
                 try {
@@ -115,13 +116,8 @@ public class Tarea extends Thread {
                         GUI.cambiarTextAreaHumo("OK");
                     }
                     if(datoHumo!=1){
-                        try {
-                            GUI.mataHermano("EMERGENCY","Aireacondicionado OFF\n !!!EMERGENCIA!!!","Habitacion on FIRE !!!");
-                            Thread.sleep(1000);
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        GUI.mataHermano("EMERGENCY","Aireacondicionado OFF\n !!!EMERGENCIA!!!","Habitacion on FIRE !!!");
                         GUI.lanzarAlarma();
                         this.kill();
                     }
@@ -157,5 +153,8 @@ public class Tarea extends Thread {
     public void cambiarFrecuenciaTemp(int frecuenciaTemp) throws Exception {
         this.aux.setIntervaloSeñal(frecuenciaTemp);
         System.out.println("El intervalo deberia ser:"+aux.intervaloSeñal);
+    }
+    public void setID(int id){
+        this.id = id;
     }
 }

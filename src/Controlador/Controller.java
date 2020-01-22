@@ -36,6 +36,7 @@ public class Controller {
         procesoHab1 = new Procesos();
 
         //Construir la tarea para la Temperatura
+        procesoHab1.task.setID(1);
         procesoHab1.task.copiarServerIm(serverHab1.a);
         procesoHab1.task.copiarGUI(this);
         txtConsolaHab2.setText("Esperando cliente...");
@@ -44,6 +45,7 @@ public class Controller {
         procesoHab2 = new Procesos();
 
         //Construir la tarea para el sensor de humo
+        procesoHab2.task.setID(2);
         procesoHab2.task.copiarServerIm(serverHab1.a);
         procesoHab2.task.copiarGUI(this);
 
