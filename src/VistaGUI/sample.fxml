@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="472.0" prefWidth="644.0">
+         <children>
+            <VBox layoutX="172.0" layoutY="20.0" prefHeight="185.0" prefWidth="356.0">
+               <children>
+                  <LineChart fx:id="grapHab1" title="Temperatura">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </VBox>
+            <VBox layoutX="172.0" layoutY="244.0" prefHeight="196.0" prefWidth="356.0">
+               <children>
+                  <LineChart fx:id="grapHab2" title="Humo">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </VBox>
+            <Button layoutX="21.0" layoutY="192.0" mnemonicParsing="false" onAction="#start" text="Encender Servidor" />
+            <Button layoutX="28.0" layoutY="244.0" mnemonicParsing="false" onAction="#stop" text="Parar Monitoreo" />
+            <Button layoutX="541.0" layoutY="134.0" mnemonicParsing="false" onAction="#cambiarFrecuenciaTemp" prefHeight="26.0" prefWidth="81.0" text="Cambiar" />
+            <TextArea fx:id="txtConsolaHab1" layoutX="14.0" layoutY="296.0" prefHeight="118.0" prefWidth="170.0" />
+            <VBox layoutX="13.0" layoutY="45.0" prefHeight="127.0" prefWidth="170.0">
+               <children>
+                  <TextArea fx:id="txtConsolaHab2" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <TextField fx:id="txtCambioFrecuenciaTemp" layoutX="541.0" layoutY="87.0" prefHeight="26.0" prefWidth="81.0" />
+            <Label layoutX="13.0" layoutY="20.0" text="Estado aire acondicionado" />
+            <Label layoutX="40.0" layoutY="280.0" text="Estado Habitación" />
+            <Label layoutX="546.0" layoutY="56.0" text="Frecuencia" />
+            <TextArea fx:id="txtConsolaEsttadoHumo" layoutX="541.0" layoutY="317.0" prefHeight="51.0" prefWidth="81.0" />
+            <Label layoutX="538.0" layoutY="288.0" text="Sensor Humo" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
