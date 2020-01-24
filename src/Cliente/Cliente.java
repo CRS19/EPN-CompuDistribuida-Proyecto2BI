@@ -16,8 +16,8 @@ public class Cliente {
 
         try{
 
-            //Registry miRegistro = LocateRegistry.getRegistry("172.29.65.64",1234);
-            Registry miRegistro = LocateRegistry.getRegistry("127.0.0.1",1234);
+            Registry miRegistro = LocateRegistry.getRegistry("192.168.0.105",1234);
+           // Registry miRegistro = LocateRegistry.getRegistry("127.0.0.1",1234);
             RemoteInterface s = (RemoteInterface) miRegistro.lookup("Prueba");
 
 
@@ -47,11 +47,11 @@ public class Cliente {
 
     private boolean estaCliente(){
         int x;
-        int n = 5;
+        int n = 100;
         int m = 0;
 
         x = (int) Math.floor(Math.random()*(n-m+1)+m);
-        if(x==3){
+        if(x==50){
             return false;
         }   else {
             return true;
